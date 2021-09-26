@@ -9,8 +9,10 @@ class wall {
         walls.push(this);
     }
     draw() {
-        strokeColor(255,255,255);
-        noFill();
+        noStroke();
+        // strokeColor(255,0,0);
+        fillColor(150,150,150)
+        // noFill();
         strokeSize(2);
         rectangle(this.x,this.y,this.size,this.size);
     }
