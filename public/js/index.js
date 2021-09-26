@@ -21,8 +21,8 @@ for (var i = 0; i < 32; i++) {
     new wall(i*32, 400);
 }
 
-window.onresize();
 var Player = new player(50,50);
+window.onresize();
 
 function loop() {
     stepLoop();
