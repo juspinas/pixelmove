@@ -1,0 +1,24 @@
+{
+  "name": "pixelmove",
+  "version": "1.0.0",
+  "description": "Playing around moving pixels",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juspinas/pixelmove.git"
+  },
+  "author": "Justin Espinas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juspinas/pixelmove/issues"
+  },
+  "homepage": "https://github.com/juspinas/pixelmove#readme",
+  "dependencies": {
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
