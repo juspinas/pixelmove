@@ -8,6 +8,8 @@ class player {
         //physics
         this.gravity = 5;
         this.yspeed = 0;
+        this.maxspeed = 10;
+        this.xspeed = 0;
 
         objects.push(this);
     }
@@ -16,20 +18,30 @@ class player {
         //for mouse controls
         // this.x = mouseX;
         // this.y = mouseY;
-        // if (keyDown.W) this.y += 4;
-
         this.yspeed += this.gravity;
+        var ground = wallCollision(this.bbx,this.x,this.y+1);
+        if(keyPress.W && ground) this.yspeed = -20;
+
         if (wallCollision(this.bbx, this.x, this.y+this.yspeed)) {
             while(!wallCollision(this.bbx, this.x, this.y + Math.sign(this.yspeed))) {
                 this.y += Math.sign(this.yspeed)
             }
             this.yspeed = 0;
         }
-        if (this.yspeed > 30) {
-            this.yspeed = 30;
-        }
         this.y += this.yspeed;
         this.bbx.update(this.x, this.y);
+
+        var d = keyDown.D - keyDown.A;
+        this.xspeed = d * this.maxspeed;
+
+        if (wallCollision(this.bbx, this.x + this.xspeed, this.y)) {
+            while(!wallCollision(this.bbx, this.x + Math.sign(this.xspeed), this.y)) {
+                this.x += Math.sign(this.xspeed)
+            }
+            this.xspeed = 0;
+        }
+
+        this.x += this.xspeed;
     }
     draw() {
         // this.y += 5;
