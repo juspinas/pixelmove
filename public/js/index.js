@@ -3,94 +3,126 @@ var render = canvas.getContext("2d");
 var width;
 var height;
 
-canvas.style.left = "0px";
-canvas.style.top = "0px";
-canvas.style.position = "absolute";
+var numSquareVertical = 31;
+var numSquareHorizontal = 34;
+var wallSpacing = window.innerHeight / 32 //Should be same as wall size
 
 window.onresize = function() {
-    width = window.innerWidth;
+    width = 35*wallSpacing;
     height = window.innerHeight;
+    // height = 30*wallSpacing;
     canvas.width = width;
     canvas.height = height;
     drawLoop();
+    // console.log(window.innerHeight);
 }
 
 var objects = [];
 
-// Main Platform
-for (var i = 0; i < 32; i++) {
-    new wall(i*32, screen.height-200);
+// Top&Bottom Boundary walls~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for (var i = 0; i < numSquareHorizontal+1; i++) { //35 squares long
+    new wall(i * wallSpacing, 0);
+    new wall(i * wallSpacing, numSquareVertical*wallSpacing);
+}
+
+// Left&Right Boundary walls~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for (var i = 0; i < (numSquareVertical); i++) {
+    new wall(0, i * wallSpacing);
+    new wall(numSquareHorizontal*wallSpacing, i * wallSpacing);
 }
 
 // 1st platform
-new wall(10*32, screen.height-200-(32*3));
-new wall(11*32, screen.height-200-(32*3));
-new wall(12*32, screen.height-200-(32*3));
+new wall(10*wallSpacing, wallSpacing*(numSquareVertical-3));
+new wall(11*wallSpacing, wallSpacing*(numSquareVertical-3));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-3));
 
 // 2nd platform ~~~~
-new wall(3*32, screen.height-200-(32*6));
-new wall(4*32, screen.height-200-(32*6));
-new wall(5*32, screen.height-200-(32*6));
-new wall(6*32, screen.height-200-(32*6));
-new wall(7*32, screen.height-200-(32*6));
-new wall(8*32, screen.height-200-(32*6));
+new wall(3*wallSpacing, wallSpacing*(numSquareVertical-6));
+new wall(4*wallSpacing, wallSpacing*(numSquareVertical-6));
+new wall(5*wallSpacing, wallSpacing*(numSquareVertical-6));
+new wall(6*wallSpacing, wallSpacing*(numSquareVertical-6));
+new wall(7*wallSpacing, wallSpacing*(numSquareVertical-6));
+new wall(8*wallSpacing, wallSpacing*(numSquareVertical-6));
 
 // 3rd platform ~~~~
-new wall(11*32, screen.height-200-(32*9));
-new wall(12*32, screen.height-200-(32*9));
-new wall(13*32, screen.height-200-(32*9));
-new wall(14*32, screen.height-200-(32*9));
-new wall(15*32, screen.height-200-(32*9));
-new wall(16*32, screen.height-200-(32*9));
+new wall(11*wallSpacing, wallSpacing*(numSquareVertical-9));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-9));
+new wall(13*wallSpacing, wallSpacing*(numSquareVertical-9));
+new wall(14*wallSpacing, wallSpacing*(numSquareVertical-9));
+new wall(15*wallSpacing, wallSpacing*(numSquareVertical-9));
+new wall(16*wallSpacing, wallSpacing*(numSquareVertical-9));
 
 // 4th platform
-new wall(21*32, screen.height-200-(32*10));
-new wall(22*32, screen.height-200-(32*10));
-new wall(22*32, screen.height-200-(32*11));
-new wall(23*32, screen.height-200-(32*11));
+new wall(20*wallSpacing, wallSpacing*(numSquareVertical-11));
+new wall(21*wallSpacing, wallSpacing*(numSquareVertical-11));
+new wall(22*wallSpacing, wallSpacing*(numSquareVertical-11));
+new wall(22*wallSpacing, wallSpacing*(numSquareVertical-12));
+new wall(23*wallSpacing, wallSpacing*(numSquareVertical-12));
+new wall(24*wallSpacing, wallSpacing*(numSquareVertical-12));
 
 // 5th platform ~~~~
-new wall(26*32, screen.height-200-(32*14));
-new wall(27*32, screen.height-200-(32*14));
-new wall(28*32, screen.height-200-(32*14));
-new wall(29*32, screen.height-200-(32*14));
-new wall(30*32, screen.height-200-(32*14));
-new wall(31*32, screen.height-200-(32*14));
+new wall(26*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(27*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(28*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(29*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(30*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(31*wallSpacing, wallSpacing*(numSquareVertical-15));
 
 // 6th platform
-new wall(7*32, screen.height-200-(32*12));
-new wall(8*32, screen.height-200-(32*12));
+
+new wall(7*wallSpacing, wallSpacing*(numSquareVertical-13));
+new wall(8*wallSpacing, wallSpacing*(numSquareVertical-13));
+new wall(9*wallSpacing, wallSpacing*(numSquareVertical-13));
 
 // 7th platform
-new wall(3*32, screen.height-200-(32*14));
-new wall(4*32, screen.height-200-(32*14));
+new wall(3*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(4*wallSpacing, wallSpacing*(numSquareVertical-15));
+new wall(5*wallSpacing, wallSpacing*(numSquareVertical-15));
 
 // 8th platform ~~~~
-new wall(6*32, screen.height-200-(32*18));
-new wall(7*32, screen.height-200-(32*18));
-new wall(8*32, screen.height-200-(32*18));
-new wall(9*32, screen.height-200-(32*18));
-new wall(10*32, screen.height-200-(32*18));
-new wall(11*32, screen.height-200-(32*18));
+new wall(6*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(7*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(8*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(9*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(10*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(11*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-20));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-21));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-22));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-23));
 
 // 9th platform
-new wall(21*32, screen.height-200-(32*16));
-new wall(22*32, screen.height-200-(32*16));
-new wall(22*32, screen.height-200-(32*17));
+new wall(4*wallSpacing, wallSpacing*(numSquareVertical-23));
 
 // 10th platform
-new wall(20*32, screen.height-200-(32*21));
+new wall(10*wallSpacing, wallSpacing*(numSquareVertical-24));
+new wall(11*wallSpacing, wallSpacing*(numSquareVertical-24));
+new wall(12*wallSpacing, wallSpacing*(numSquareVertical-24));
 
 // 11th platform
-new wall(24*32, screen.height-200-(32*22));
+new wall(18*wallSpacing, wallSpacing*(numSquareVertical-19));
+new wall(19*wallSpacing, wallSpacing*(numSquareVertical-19));
 
-//12th platform ~~~FINAL~~~
-new wall(29*32, screen.height-200-(32*23));
-new wall(30*32, screen.height-200-(32*23));
-new wall(31*32, screen.height-200-(32*23));
+// 12th platform
+new wall(23*wallSpacing, wallSpacing*(numSquareVertical-21));
+new wall(24*wallSpacing, wallSpacing*(numSquareVertical-21));
 
+// 13th platform
+new wall(20*wallSpacing, wallSpacing*(numSquareVertical-24));
 
-var Player = new player(50,50);
+// 14th platform
+new wall(25*wallSpacing, wallSpacing*(numSquareVertical-26));
+
+// 15th platform (FINAL)
+new wall(30*wallSpacing, wallSpacing*(numSquareVertical-26));
+new wall(31*wallSpacing, wallSpacing*(numSquareVertical-26));
+new wall(32*wallSpacing, wallSpacing*(numSquareVertical-26));
+new wall(33*wallSpacing, wallSpacing*(numSquareVertical-26));
+
+// Create Player
+var Player = new player(3*wallSpacing ,wallSpacing*(numSquareVertical-3));
+
 window.onresize();
 
 function loop() {
@@ -110,5 +142,6 @@ function drawLoop() {
         if (objects[i].draw) objects[i].draw();
     }
 }
+
 var target_fps = 30;
 setInterval(loop, 1000/target_fps);

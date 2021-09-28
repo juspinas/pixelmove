@@ -2,11 +2,11 @@ class player {
     constructor(x,y) {
         this.x = x;
         this.y = y;
-        this.size = 32;
+        this.size = window.innerHeight / 33
         this.bbx = new bbox(this.x, this.y, this.size, this.size);
 
         //physics
-        this.gravity = 5;
+        this.gravity = this.size / 8;
         this.yspeed = 0;
         this.maxspeed = 10;
         this.xspeed = 0; //Current speed
@@ -18,10 +18,12 @@ class player {
         //for mouse controls
         // this.x = mouseX;
         // this.y = mouseY;
+
+        // Gravity
         this.yspeed += this.gravity;
 
         // Jumping
-        var jumpheight = 35;
+        var jumpheight = this.size;
         var ground = wallCollision(this.bbx,this.x,this.y+1);
         if(keyPress.W && ground) this.yspeed = - jumpheight;
 
@@ -32,6 +34,12 @@ class player {
             }
             this.yspeed = 0;
         }
+
+        // Setting max falling speed
+        if (this.yspeed > 30) {
+            this.yspeed = 30;
+        }
+
         this.y += this.yspeed;
         this.bbx.update(this.x, this.y);
 
@@ -51,8 +59,10 @@ class player {
     }
     draw() {
         // this.y += 5;
-        strokeColor(255,255,255);
+        strokeColor(0,150,0);
         noFill();
+        // noStroke;
+        fillColor(0,100,0)
         rectangle(this.x,this.y,this.size,this.size);
         // this.bbx.draw();
 
