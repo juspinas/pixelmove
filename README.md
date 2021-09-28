@@ -8,5 +8,5 @@ Playing around moving pixels
 5~ open: http://localhost:3000/
 
 Controls:
-"a" and "d" to move left and right
+"a" and "d" to move left and right.
 "w" to jump
