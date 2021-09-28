@@ -8,7 +8,7 @@ class player {
         //physics
         this.gravity = this.size / 8;
         this.yspeed = 0;
-        this.maxspeed = 10;
+        this.maxspeed = this.size / 3;
         this.xspeed = 0; //Current speed
 
         objects.push(this);

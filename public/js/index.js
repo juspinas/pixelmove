@@ -109,7 +109,7 @@ new wall(23*wallSpacing, wallSpacing*(numSquareVertical-21));
 new wall(24*wallSpacing, wallSpacing*(numSquareVertical-21));
 
 // 13th platform
-new wall(20*wallSpacing, wallSpacing*(numSquareVertical-24));
+new wall(20*wallSpacing, wallSpacing*(numSquareVertical-25));
 
 // 14th platform
 new wall(25*wallSpacing, wallSpacing*(numSquareVertical-26));
