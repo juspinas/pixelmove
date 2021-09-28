@@ -141,6 +141,9 @@ function drawLoop() {
     for (var i=0; i < objects.length; i++) {
         if (objects[i].draw) objects[i].draw();
     }
+    fillText("Pixelmove",width/2,height/16);
+    fillText("Left: a     Right: d",width/2,height/10);
+    fillText("Jump: w",width/2,height/8);
 }
 
 var target_fps = 30;

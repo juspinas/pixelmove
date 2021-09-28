@@ -45,3 +45,10 @@ function circle(x,y,r) {
     render.fill();
     render.stroke();
 }
+function fillText(text,x,y) {
+    render.beginPath();
+    render.font = "20px Arial";
+    render.textAlign = "center";
+    render.fillStyle = "white";
+    render.fillText(text,x,y);
+}
