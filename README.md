@@ -6,3 +6,7 @@ Playing around moving pixels
 3~ type: npm i
 4~ type: start
 5~ open: http://localhost:3000/
+
+Controls:
+"a" and "d" to move left and right
+"w" to jump
